@@ -1,0 +1,18 @@
+{ 
+  "area" : "AFLPAL", 
+  "function" : "AUTOARIMA", 
+  "parameters" : [ 
+    { 
+      "type" : "COVID_visual.db::PAL.TTData", 
+      "direction" : "IN" 
+    }, 
+    { 
+      "type" : "COVID_visual.db::PAL.TTParams", 
+      "direction" : "IN" 
+    }, 
+    { 
+      "type" : "COVID_visual.db::PAL.TTModel", 
+      "direction" : "OUT" 
+    } 
+  ]
+}

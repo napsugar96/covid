@@ -1,0 +1,13 @@
+PROCEDURE "COVID_visual.db::predict" (IN ForecastLength INTEGER)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+	upsert "COVID_visual.db::PAL.ParamsForecast" values ('ForecastLength', :ForecastLength, null, null) where "name" = 'ForecastLength';
+	delete from "COVID_visual.db::PAL.Forecast";
+	p1 = select * from "COVID_visual.db::PAL.Model";
+	p2 = select * from "COVID_visual.db::PAL.ParamsForecast";
+	call "COVID_visual.db::PALpredict" (:p1, :p2, :p3);                              
+	insert into "COVID_visual.db::PAL.Forecast" select * from :p3;
+END
